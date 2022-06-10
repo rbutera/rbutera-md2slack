@@ -1,5 +1,5 @@
 {
-  "name": "markdown-to-slack",
+  "name": "md2slack",
   "version": "0.0.1",
   "description": "Command line tool that takes markdown from stdin and writes Slack markdown to stdout",
   "main": "index.js",

@@ -1,0 +1,25 @@
+{
+  "name": "markdown-to-slack",
+  "version": "0.0.1",
+  "description": "Command line tool that takes markdown from stdin and writes Slack markdown to stdout",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rbutera/markdown-to-slack.git"
+  },
+  "keywords": [
+    "markdown",
+    "slack",
+    "clt",
+    "cli"
+  ],
+  "author": "rbutera",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/rbutera/markdown-to-slack/issues"
+  },
+  "homepage": "https://github.com/rbutera/markdown-to-slack#readme"
+}

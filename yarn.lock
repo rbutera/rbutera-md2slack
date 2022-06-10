@@ -4301,9 +4301,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"markdown-to-slack@workspace:.":
+"md2slack@workspace:.":
   version: 0.0.0-use.local
-  resolution: "markdown-to-slack@workspace:."
+  resolution: "md2slack@workspace:."
   dependencies:
     "@tsconfig/node16": ^1.0.2
     "@types/jest": ^28.1.1

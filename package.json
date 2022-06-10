@@ -67,9 +67,7 @@
     ],
     "*.{js,ts,css,md}": "prettier --write"
   },
-  "bin": {
-    "md2slack": "./dist/index.js"
-  },
+  "bin": "./dist/index.js",
   "packageManager": "yarn@3.2.1",
   "dependencies": {
     "slackify-markdown": "^4.3.1"

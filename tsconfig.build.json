@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "exclude": ["**/__tests__/*.ts", "**/__mocks__/*.ts"],
+  "compilerOptions": {
+    "outputDir": "dist"
+  }
+}

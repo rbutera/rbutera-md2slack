@@ -1,6 +1,6 @@
 {
   "name": "md2slack",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Command line tool that takes markdown from stdin and writes Slack markdown to stdout",
   "main": "index.js",
   "scripts": {

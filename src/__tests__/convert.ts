@@ -14,4 +14,12 @@ describe('convert', () => {
 
     expect(actual).toBe('wawawiwa _Borat_')
   })
+
+  it('handles links correctly', () => {
+    const input = `- [x] Added a routine to dumps pipeline that [merges 'Other' and 'Other Jurisdiction'](https://app.clickup.com/t/2r74da2)`
+    const actual = convert(input)
+    const expected = `• ✅ Added a routine to dumps pipeline that <https://app.clickup.com/t/2r74da2|merges 'Other' and 'Other Jurisdiction'>`
+
+    expect(actual).toBe(expected)
+  })
 })

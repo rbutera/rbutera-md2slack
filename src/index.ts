@@ -16,7 +16,7 @@ export function run() {
 }
 
 export function version() {
-  process.stdout.write(packageJson.version)
+  return process.stdout.write(packageJson.version)
 }
 
 export function main() {
@@ -24,9 +24,9 @@ export function main() {
   if (Object.keys(argv).includes('v')) {
     version()
     return
+  } else {
+    run()
   }
-
-  run()
 }
 
 main()

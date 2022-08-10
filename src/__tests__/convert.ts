@@ -5,7 +5,7 @@ describe('convert', () => {
     const input = `I love [md2slack](https://github.com/rbutera/md2slack)`
     const actual = convert(input)
 
-    expect(actual).toBe('I love <https://github.com/rbutera/md2slack|md2slack>')
+    expect(actual).toBe('I love md2slack: https://github.com/rbutera/md2slack')
   })
 
   it('converts <cite> tags to italics', () => {
@@ -15,10 +15,18 @@ describe('convert', () => {
     expect(actual).toBe('wawawiwa _Borat_')
   })
 
-  it('handles links correctly', () => {
-    const input = `- [x] Added a routine to dumps pipeline that [merges 'Other' and 'Other Jurisdiction'](https://app.clickup.com/t/2r74da2)`
+  it('handles checkboxes', () => {
+    const input = `- [x] Added a routine to dumps pipeline`
     const actual = convert(input)
-    const expected = `• ✅ Added a routine to dumps pipeline that <https://app.clickup.com/t/2r74da2|merges 'Other' and 'Other Jurisdiction'>`
+    const expected = `• ✅ Added a routine to dumps pipeline`
+
+    expect(actual).toBe(expected)
+  })
+
+  it('handles urls', () => {
+    const input = `[foo bar baz](https://bar.baz)`
+    const actual = convert(input)
+    const expected = `foo bar baz: https://bar.baz`
 
     expect(actual).toBe(expected)
   })

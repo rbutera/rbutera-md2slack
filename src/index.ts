@@ -5,12 +5,20 @@ import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import * as packageJson from '../package.json'
 
+process.stdin.resume()
+process.stdin.setEncoding('utf8')
+
 export function run() {
-  process.stdin.on('readable', () => {
-    let chunk
-    while ((chunk = process.stdin.read()) !== null) {
-      const converted = convert(chunk)
+  let remainder = ''
+  process.stdin.on('data', function (chunk) {
+    const lines = chunk.toString().split('\n')
+    lines.unshift(remainder + lines.shift())
+    const popped = lines.pop()
+    remainder = popped ? popped : ''
+    for (const line of lines) {
+      const converted = convert(line)
       process.stdout.write(converted)
+      process.stdout.write('\n')
     }
   })
 }

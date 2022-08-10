@@ -16,8 +16,6 @@ module.exports = {
     'xo-typescript/space',
     'prettier',
     'plugin:prettier/recommended',
-    'plugin:functional/external-recommended',
-    'plugin:functional/recommended',
   ],
   root: true,
   env: {
@@ -63,6 +61,7 @@ module.exports = {
     '@typescript-eslint/naming-convention': 'warn',
     '@typescript-eslint/no-empty-function': 'warn',
     'unicorn/no-array-method-this-argument': 'off',
+    '@typescript-eslint/restrict-plus-operands': 'warn',
   },
   overrides: [
     {

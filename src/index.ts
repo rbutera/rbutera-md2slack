@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-import convert from './convert'
+import { convertAll } from './convert'
 import * as process from 'node:process'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
@@ -15,11 +15,13 @@ export function run() {
     lines.unshift(remainder + lines.shift())
     const popped = lines.pop()
     remainder = popped ? popped : ''
+    const toConvert = []
     for (const line of lines) {
-      const converted = convert(line)
-      process.stdout.write(converted)
-      process.stdout.write('\n')
+      toConvert.push(line)
     }
+
+    const converted = convertAll(toConvert)
+    process.stdout.write(converted)
   })
 }
 

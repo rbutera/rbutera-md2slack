@@ -25,4 +25,10 @@ function convert(input: string): string {
   }
 }
 
+export function convertAll(input: string[]): string {
+  const toConvert = input.join('\n')
+  const converted = convert(toConvert)
+  return converted
+}
+
 export default convert

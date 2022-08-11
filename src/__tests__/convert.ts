@@ -23,6 +23,14 @@ describe('convert', () => {
     expect(actual).toBe(expected)
   })
 
+  it('handles unfinished TODO items', () => {
+    const input = `- [ ] Added a routine to dumps pipeline`
+    const actual = convert(input)
+    const expected = `• Added a routine to dumps pipeline`
+
+    expect(actual).toBe(expected)
+  })
+
   it('handles urls', () => {
     const input = `[foo bar baz](https://bar.baz)`
     const actual = convert(input)

@@ -18,7 +18,7 @@ describe('convert', () => {
   it('handles checkboxes', () => {
     const input = `- [x] Added a routine to dumps pipeline`
     const actual = convert(input)
-    const expected = `• ✅ Added a routine to dumps pipeline`
+    const expected = `• ✔️  Added a routine to dumps pipeline`
 
     expect(actual).toBe(expected)
   })

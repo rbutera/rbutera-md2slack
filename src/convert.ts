@@ -26,9 +26,16 @@ function convert(input: string): string {
 }
 
 export function convertAll(input: string[]): string {
+  // split into sections
   const toConvert = input.join('\n')
-  const converted = convert(toConvert)
-  return converted
+  const paragraphs = toConvert.split(/\n(# [\S ]*)/g)
+  const trimmed = paragraphs.map((text) => {
+    return text.startsWith('\n\n') ? text.slice(2) : text
+  })
+  const convertedParagraphs = trimmed.map((text) => convert(text))
+  const result = convertedParagraphs.join('\n\n')
+
+  return result
 }
 
 export default convert

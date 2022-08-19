@@ -1,11 +1,11 @@
 {
   "name": "md2slack",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Command line tool that takes markdown from stdin and writes Slack markdown to stdout",
   "source": "src/index.ts",
   "main": "dist/index.js",
   "scripts": {
-    "test": "xo && jest",
+    "test": "jest",
     "prepare": "husky install",
     "build": "parcel build"
   },

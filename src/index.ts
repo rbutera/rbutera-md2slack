@@ -16,8 +16,20 @@ export function run() {
     const popped = lines.pop()
     remainder = popped ? popped : ''
     const toConvert = []
+    let skip = false
+    let index = 0
     for (const line of lines) {
-      toConvert.push(line)
+      if (index === 0 && line.startsWith('---')) {
+        skip = true
+      }
+
+      if (!skip) {
+        toConvert.push(line)
+      } else if (skip && line.startsWith('---')) {
+        skip = false
+      }
+
+      index++
     }
 
     const converted = convertAll(toConvert)

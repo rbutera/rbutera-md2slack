@@ -1,4 +1,4 @@
-import convert from '../convert'
+import convert, { convertAll } from '../convert'
 
 describe('convert', () => {
   it('converts a markdown input to slack', () => {
@@ -35,6 +35,21 @@ describe('convert', () => {
     const input = `[foo bar baz](https://bar.baz)`
     const actual = convert(input)
     const expected = `foo bar baz: https://bar.baz`
+
+    expect(actual).toBe(expected)
+  })
+})
+
+const expected = `Foo
+
+*Bar baz*
+
+baz`
+
+describe('convertAll', () => {
+  it('converts a body of markdown correctly', () => {
+    const input = [`Foo`, `\n\n`, `# Bar baz`, `\n\n`, `baz`]
+    const actual = convertAll(input)
 
     expect(actual).toBe(expected)
   })

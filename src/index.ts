@@ -7,8 +7,6 @@ import * as packageJson from '../package.json'
 import { format } from 'date-fns'
 import * as fs from 'node:fs/promises'
 
-dotenv.config({ silent: true })
-
 process.stdin.resume()
 process.stdin.setEncoding('utf8')
 

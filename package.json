@@ -3,7 +3,7 @@
   "version": "0.3.2",
   "description": "Command line tool that takes markdown from stdin and writes Slack markdown to stdout",
   "source": "src/index.ts",
-  "main": "dist/index.js",
+  "main": "dist/index.mjs",
   "scripts": {
     "test": "jest",
     "prepare": "husky install",
@@ -27,7 +27,7 @@
   "homepage": "https://github.com/rbutera/markdown-to-slack#readme",
   "engines": {
     "npm": ">=7.0.0",
-    "node": ">=16.0.0"
+    "node": ">=18.7.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.2",
@@ -58,9 +58,9 @@
     "remark": "^14.0.2",
     "rimraf": "^3.0.2",
     "ts-jest": "^28.0.4",
-    "ts-node": "^10.8.1",
+    "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.0.0",
-    "typescript": "^4.7.3"
+    "typescript": "^4.7.4"
   },
   "lint-staged": {
     "*.{js,ts}": [
@@ -69,9 +69,10 @@
     ],
     "*.{js,ts,css,md}": "prettier --write"
   },
-  "bin": "./dist/index.js",
+  "bin": "./dist/index.mjs",
   "packageManager": "yarn@3.2.1",
   "dependencies": {
+    "date-fns": "^2.29.2",
     "slackify-markdown": "^4.3.1",
     "yargs": "^17.5.1"
   }

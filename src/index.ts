@@ -4,11 +4,20 @@ import * as process from 'node:process'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import * as packageJson from '../package.json'
+import { format } from 'date-fns'
+import * as fs from 'node:fs/promises'
+
+dotenv.config({ silent: true })
 
 process.stdin.resume()
 process.stdin.setEncoding('utf8')
 
-export function run() {
+export function writeConverted(toConvert: string[]): void {
+  const converted = convertAll(toConvert)
+  process.stdout.write(converted)
+}
+
+export function runOnStdIn() {
   let remainder = ''
   process.stdin.on('data', function (chunk) {
     const lines = chunk.toString().split('\n')
@@ -32,23 +41,47 @@ export function run() {
       index++
     }
 
-    const converted = convertAll(toConvert)
-    process.stdout.write(converted)
+    writeConverted(toConvert)
   })
+}
+
+export async function runOnToday() {
+  const dateFormat = 'yyyy-MM-dd EEE'
+  const directory =
+    process.env.DAILY_STANDUP_DIRECTORY ?? '/Users/rai/notes/work/log'
+  const filename = format(new Date(), dateFormat)
+  const filenameFull = `${directory}/done ${filename}.md`
+  const contents = await fs.readFile(filenameFull, 'utf8')
+  writeConverted(contents.split('\n'))
 }
 
 export function version() {
   return process.stdout.write(packageJson.version)
 }
 
-export function main() {
-  const argv = yargs(hideBin(process.argv)).argv
+export async function main() {
+  const fullArguments = yargs(hideBin(process.argv))
+  const { argv } = fullArguments
+
   if (Object.keys(argv).includes('v')) {
     version()
     return
-  } else {
-    run()
   }
+
+  const { parsed } = fullArguments
+
+  if (!parsed) {
+    runOnStdIn()
+    return
+  }
+
+  const { _: argument } = parsed.argv
+
+  if (argument.includes('today') || argument.includes('standup')) {
+    await runOnToday()
+  }
+
+  process.exit(0)
 }
 
-main()
+await main()

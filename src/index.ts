@@ -12,7 +12,8 @@ process.stdin.setEncoding('utf8')
 
 export function writeConverted(toConvert: string[]): void {
   const converted = convertAll(toConvert)
-  process.stdout.write(converted)
+  const trimmed = converted.trim()
+  process.stdout.write(trimmed)
 }
 
 export function runOnStdIn() {

@@ -1,4 +1,4 @@
-#! /usr/bin/env node
+#!/usr/bin/env node
 import { convertAll } from './convert'
 import * as process from 'node:process'
 import yargs from 'yargs'
@@ -6,6 +6,7 @@ import { hideBin } from 'yargs/helpers'
 import * as packageJson from '../package.json'
 import { format } from 'date-fns'
 import * as fs from 'node:fs/promises'
+import * as os from 'node:os'
 
 process.stdin.resume()
 process.stdin.setEncoding('utf8')
@@ -22,7 +23,7 @@ export function runOnStdIn() {
     const lines = chunk.toString().split('\n')
     lines.unshift(remainder + lines.shift())
     const popped = lines.pop()
-    remainder = popped ? popped : ''
+    remainder = popped ?? ''
     const toConvert = []
     let skip = false
     let index = 0
@@ -47,7 +48,7 @@ export function runOnStdIn() {
 export async function runOnToday() {
   const dateFormat = 'yyyy-MM-dd EEE'
   const directory =
-    process.env.DAILY_STANDUP_DIRECTORY ?? '/Users/rai/notes/work/log'
+    process.env.DAILY_STANDUP_DIRECTORY ?? `${os.homedir()}/notes/work/log`
   const filename = format(new Date(), dateFormat)
   const filenameFull = `${directory}/done ${filename}.md`
   const contents = await fs.readFile(filenameFull, 'utf8')

@@ -10,6 +10,7 @@ function format(input: string): string {
   return input
     .replace(/<(\/)?cite>/g, '_')
     .replace(/<([^|]+)\|(.+)>/g, '$2: $1')
+    .replace(/\[\!quote\]/g, ' ')
     .trimEnd()
 }
 
